@@ -1,0 +1,4 @@
+interface:
+  display_name: "數位互動教材與 Facebook 發布"
+  short_description: "教材製作、完整驗證、發布與中英 Facebook 分享"
+  default_prompt: "Use $digital-teaching-material-facebook-post-codex to build and verify an interactive lesson, then publish it with a bilingual Facebook post."
