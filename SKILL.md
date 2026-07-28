@@ -1,7 +1,7 @@
 ---
 name: digital-teaching-material-facebook-post-codex
 description: >-
-  Build, complete, revise, verify, publish, and share accurate interactive digital teaching materials, and generate bilingual Traditional Chinese and English Facebook posts with verified link-preview thumbnails. Use when Codex must turn an HTML/Vite/CSS/JS scaffold or existing lesson into classroom-ready教材; research factual content; create precise instructional visuals, animations, simulations, quizzes, or interactions; verify desktop/tablet/mobile behavior; version or deploy a lesson; produce a 臉書文, Facebook post, FB post, caption, launch post, social copy, Open Graph thumbnail, or project-sharing text; or when the user says「收工」to trigger the complete GitHub Pages, social-preview, and bilingual Facebook-post handoff workflow.
+  Build, complete, revise, verify, publish, and share accurate interactive digital teaching materials, and generate one-click-copy bilingual Traditional Chinese and English Facebook posts with verified link-preview thumbnails. Use when Codex must turn an HTML/Vite/CSS/JS scaffold or existing lesson into classroom-ready教材; research factual content; create precise instructional visuals, animations, simulations, quizzes, or interactions; verify desktop/tablet/mobile behavior; version or deploy a lesson; produce a 臉書文, Facebook post, FB post, caption, launch post, social copy, 一鍵複製臉書文, Open Graph thumbnail, or project-sharing text; or when the user says「收工」to trigger the complete GitHub Pages, social-preview, and bilingual Facebook-post handoff workflow.
 ---
 
 # 數位互動教材與 Facebook 發布 Codex 版
@@ -17,7 +17,7 @@ description: >-
 
 ## 任務路由
 
-- **只寫 Facebook 貼文**：依 `facebook-post-workflow.md` 直接產生中英貼文；若是自有／目前專案連結，再處理縮圖與 metadata，並在最終回覆直接顯示縮圖與縮圖網址／路徑。
+- **只寫 Facebook 貼文**：依 `facebook-post-workflow.md` 直接產生中英貼文；若是自有／目前專案連結，再處理縮圖與 metadata，並在最終回覆直接顯示縮圖與縮圖網址／路徑，再以單一 fenced `text` 區塊交付可一鍵複製的完整文案。
 - **只製作或修改教材**：執行教材查核、開發與驗證流程；除非使用者要求發布、分享或說「收工」，不擅自部署或產生貼文。
 - **教材加社群分享**：先完成教材與部署閘門，再建立縮圖、metadata 與中英貼文。
 - **使用者說「收工」**：執行完整驗證、版本、GitHub Pages、公開檢查、縮圖及中英 Facebook 貼文交付。
@@ -35,7 +35,7 @@ description: >-
 - 所有標籤、數值、引線和說明文字都避開主體、資料點、座標軸、地名、控制元件與動畫路徑。
 - 支援滑鼠、觸控、鍵盤及 `prefers-reduced-motion`；動態回饋使用適當語意與 `aria-live`。
 - 未完成內容查核、視覺目視檢查、正式建置與多尺寸瀏覽器驗證前，不得部署或宣告完成。
-- Facebook 貼文預設同時提供繁體中文與英文，置於同一個易複製區塊；除非使用者明確要求單一語言。貼文交付前先顯示已驗證的社群縮圖，並提供可用的公開網址或本機絕對路徑。
+- Facebook 貼文預設同時提供繁體中文與英文，並將完整中英文案置於同一個 fenced `text` 區塊，使介面提供一鍵複製；除非使用者明確要求分開或只要單一語言。貼文交付前先在該區塊外顯示已驗證的社群縮圖，並提供可用的公開網址或本機絕對路徑。
 - 不修改第三方網站。只有連結屬於使用者控制或目前專案時，才把縮圖、Open Graph 與 Twitter metadata 修改納入工作範圍。
 
 ## 教材來源與 Repository 規則

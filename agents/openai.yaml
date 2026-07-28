@@ -1,4 +1,4 @@
 interface:
   display_name: "數位互動教材與 Facebook 發布"
-  short_description: "教材製作、發布、縮圖驗證與中英 Facebook 分享"
-  default_prompt: "Use $digital-teaching-material-facebook-post-codex to publish a verified lesson with a preview thumbnail and bilingual Facebook post."
+  short_description: "教材製作、縮圖驗證與一鍵複製中英 Facebook 貼文"
+  default_prompt: "Use $digital-teaching-material-facebook-post-codex to publish a verified lesson with a preview thumbnail and a one-click-copy bilingual Facebook post."
