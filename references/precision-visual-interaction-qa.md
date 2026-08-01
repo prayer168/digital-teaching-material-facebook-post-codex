@@ -100,6 +100,7 @@
 6. 空間不足時重構版面、分圖或改用外部 HTML 說明，不只縮小字體。
 7. 手機版重新安排文字與圖像，不只等比例縮小桌機構圖。
 8. 動畫物件若會移動，引線應位於相同座標系統，或把振幅限制在仍能正確指向的範圍。
+9. 所有可見教材與介面文字（含按鈕、頁籤、提示、表格、圖例、座標軸及 SVG 標籤）的計算後 `font-size` 不得低於 `16px`。放大後若產生碰撞、擁擠或溢位，重構欄寬、間距、換行或版面；不得用縮小文字解決。必要資訊不要嵌在無法量測的點陣圖片或 Canvas 小字中。
 
 ## 6. 動畫教學設計
 
@@ -237,13 +238,32 @@ CSS animation 不要覆寫 SVG 原本的 transform 定位。使用雙層群組�
 1. 有實質內容，沒有框架錯誤覆蓋層。
 2. 沒有未處理主控台錯誤或重要失敗請求。
 3. 沒有水平溢出、裁切或控制重疊。
-4. 文字不壓圖，標籤和引線指向正確。
-5. 動畫初始、中間、結束和重播狀態正常。
-6. 播放、暫停、速度、頁籤切換與重設有效。
-7. SVG 沒有意外填色、重複 ID 衝突或 transform 覆寫。
-8. 圖表、座標、資料、單位和圖例一致。
-9. 手機文字可讀，底部導覽不遮住後排內容。
-10. 鍵盤、觸控及降低動畫模式可完成主要流程。
+4. 所有可見文字的計算後字級均不低於 `16px`。
+5. 文字不壓圖，標籤和引線指向正確。
+6. 動畫初始、中間、結束和重播狀態正常。
+7. 播放、暫停、速度、頁籤切換與重設有效。
+8. SVG 沒有意外填色、重複 ID 衝突或 transform 覆寫。
+9. 圖表、座標、資料、單位和圖例一致。
+10. 手機文字可讀，底部導覽不遮住後排內容。
+11. 鍵盤、觸控及降低動畫模式可完成主要流程。
+
+逐頁籤與主要互動狀態執行計算後字級稽核；HTML 與 SVG 文字都必須納入：
+
+```js
+const undersized = [...document.querySelectorAll('body *')]
+  .filter((el) => el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden')
+  .filter((el) => [...el.childNodes].some((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim()))
+  .filter((el) => Number.parseFloat(getComputedStyle(el).fontSize) < 16);
+
+console.table(undersized.map((el) => ({
+  element: el.tagName,
+  className: el.className,
+  fontSize: getComputedStyle(el).fontSize,
+  text: el.textContent.trim().slice(0, 80),
+})));
+```
+
+三種必要 viewport、每個主要頁面與互動狀態的 `undersized.length` 都必須為 `0`。對 Canvas 或點陣圖片中無法由 computed style 量測的文字，改以 DOM／SVG 呈現；確有必要保留時，另做等效 16px 的目視與像素尺寸檢查。
 
 保存證據：
 
@@ -269,6 +289,7 @@ CSS animation 不要覆寫 SVG 原本的 transform 定位。使用雙層群組�
 - 有已知事實、公式、比例、方向、順序、因果或答案錯誤。
 - 使用授權不明資產。
 - 文字遮住重要資訊，或任一必要 viewport 有裁切、溢出。
+- 任一必要 viewport、頁面或主要互動狀態仍有計算後字級低於 `16px` 的可見文字。
 - 動畫跑出畫面、狀態不同步、控制無效或出現意外 SVG 填色。
 - 鍵盤或觸控無法完成主要流程。
 - 正式 build、資料載入、主控台或關鍵請求失敗。
@@ -285,6 +306,7 @@ CSS animation 不要覆寫 SVG 原本的 transform 定位。使用雙層群組�
 - 動畫符合概念、因果、空間與時間關係。
 - 互動要求有意義的學生思考並有可用回饋。
 - 標籤、文字、圖像和控制沒有重疊。
+- 所有必要 viewport、頁面與主要互動狀態的可見文字計算後字級皆不低於 `16px`。
 - 無障礙、鍵盤、觸控及降低動畫模式可用。
 - 桌機、平板、手機實際瀏覽器驗證通過。
 - 正式建置、安全檢查、資料載入與版本文件通過。
